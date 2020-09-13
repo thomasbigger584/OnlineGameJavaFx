@@ -1,26 +1,30 @@
 package com.jpro.hellojpro;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.text.Font;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+
 public class HelloJPro extends Application {
-
-    public static void main(String[] args)
-    {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage stage)
-    {
-        Label label = new Label("Hello JPro!");
-        label.setFont(new Font(50));
-        label.setAlignment(Pos.CENTER);
-        stage.setScene(new Scene(label));
-        stage.show();
-    }
+	public static Stage stage;
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			stage = primaryStage;
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/com/jpro/hellojpro/fxml/View.fxml"));
+			Scene scene = new Scene(root,1000,800);
+			scene.getStylesheets().add(getClass().getResource("/com/jpro/hellojpro/css/application.css").toExternalForm());
+			stage.setScene(scene);
+			stage.setTitle("Online Game");
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
